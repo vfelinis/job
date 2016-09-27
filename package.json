@@ -1,0 +1,19 @@
+{
+  "name": "ticket",
+  "version": "1.0.0",
+  "description": "simple tickets system",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vfelinis/job.git"
+  },
+  "author": "Ponomarev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vfelinis/job/issues"
+  },
+  "homepage": "https://github.com/vfelinis/job#readme"
+}
