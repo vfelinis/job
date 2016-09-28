@@ -1,5 +1,6 @@
 import React from 'react'
-import TicketList from './TicketList'
+import Authorized from './Authorized'
+import NotAuthorized from './NotAuthorized'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import actions from '../redux/actions'
@@ -8,8 +9,18 @@ class App extends React.Component{
 	render(){
 		return (
 			<div className="container">
-				<h1>Tickets List</h1>
-				<TicketList tickets={this.props.tickets} fetch={this.props.actions.fetchTicketsAsync}/>
+				{ this.props.user ?
+					<Authorized
+					  user= {this.props.user}
+					  tickets={this.props.tickets}
+					  fetchTickets={this.props.actions.fetchTicketsAsync}
+					  handleShowAddToggle={this.props.actions.handleShowAddToggle}
+					/> :
+					<NotAuthorized
+					  error={this.props.error}
+					  fetchLogin={this.props.actions.fetchLoginAsync}
+					/>
+				}
 			</div>
 		)
 	}
