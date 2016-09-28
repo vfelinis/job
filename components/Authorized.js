@@ -6,6 +6,11 @@ class Authorized extends React.Component{
 	render(){
 		return (
 			<div>
+				{
+					this.props.user ?
+					<div>Пользователь {this.props.user.login}, <a onClick={this.props.fetchLogout}>выход</a></div> :
+					null
+				}
 				{ this.props.showAdd ?
 					<CreateTicket
 					  user= {this.props.user}

@@ -1,5 +1,9 @@
 export default function reducer(state, action){
 	switch(action.type) {
+		case 'FETCH_LOGOUT':
+			return {...state,
+				user: null
+			}
 		case 'FETCH_ERROR':
 			return {...state,
 				error: action.payload

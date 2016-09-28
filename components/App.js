@@ -6,6 +6,9 @@ import {bindActionCreators} from 'redux'
 import actions from '../redux/actions'
 
 class App extends React.Component{
+	componentDidMount(){
+		this.props.actions.fetchSessionAsync()
+	}
 	render(){
 		return (
 			<div className="container">
@@ -13,7 +16,9 @@ class App extends React.Component{
 					<Authorized
 					  user= {this.props.user}
 					  tickets={this.props.tickets}
+					  showAdd={this.props.showAdd}
 					  fetchTickets={this.props.actions.fetchTicketsAsync}
+					  fetchLogout={this.props.actions.fetchLogoutAsync}
 					  handleShowAddToggle={this.props.actions.handleShowAddToggle}
 					/> :
 					<NotAuthorized
