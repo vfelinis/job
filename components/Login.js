@@ -9,7 +9,6 @@ class Login extends React.Component{
   		var formPass = ReactDom.findDOMNode(this.refs.pass).value
 		var user = {login: formLogin, pass: formPass}
 		this.props.fetchLogin(user)
-		this.props.errorClear()
 	}
 	followReg(){
 		this.props.handleShowRegToggle()

@@ -12,7 +12,7 @@ class App extends React.Component{
 	render(){
 		return (
 			<div className="container">
-				{ this.props.user ?
+				{ 'id' in this.props.user ?
 					<Authorized
 					  user= {this.props.user}
 					  tickets={this.props.tickets}
@@ -26,6 +26,7 @@ class App extends React.Component{
 					  error={this.props.error}
 					  fetchLogin={this.props.actions.fetchLoginAsync}
 					  fetchRegister={this.props.actions.fetchRegisterAsync}
+					  errorRegister={this.props.actions.errorRegister}
 					  errorClear={this.props.actions.errorClear}
 					  handleShowRegToggle={this.props.actions.handleShowRegToggle}
 					/>

@@ -7,6 +7,6 @@ let finalCreateStore = compose(
 	applyMiddleware(thunk, logger())
 )(createStore)
 
-export default function configureStore(initialState = {tickets: [], showReg: false,showAdd: false, user: null, error: {login: '', register: ''}}){
+export default function configureStore(initialState = {tickets: [], showReg: false,showAdd: false, user: {}, error: {login: '', register: ''}}){
 	return finalCreateStore(reducer, initialState)
 }

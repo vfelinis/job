@@ -2,7 +2,7 @@ export default function reducer(state, action){
 	switch(action.type) {
 		case 'FETCH_LOGOUT':
 			return {...state,
-				user: null
+				user: {}
 			}
 		case 'FETCH_ERROR_LOGIN':
 			return {...state,
@@ -15,6 +15,10 @@ export default function reducer(state, action){
 		case 'FETCH_LOGIN':
 			return {...state,
 				user: action.payload
+			}
+		case 'FETCH_REGISTER':
+			return {...state,
+				showReg: action.payload
 			}
 		case 'FETCH_TICKETS':
 			return {...state,

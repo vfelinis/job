@@ -1,19 +1,20 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import Error from './Error'
 
 class Register extends React.Component{
-	handleRegister(){
+	handleRegister(e){
 		e.preventDefault()
 		var formLogin = ReactDom.findDOMNode(this.refs.login).value
   		var formPass = ReactDom.findDOMNode(this.refs.pass).value
   		var formPassConfirm = ReactDom.findDOMNode(this.refs.pass_confirm).value
 		if(formPass != formPassConfirm){
-			this.props.fetchErrorRegister("Пароли не совпадают")
+			this.props.errorRegister("Пароли не совпадают")
 		}
 		else{
 			var user = {login: formLogin, pass: formPass}
-			this.props.fetchRegister(user)
 			this.props.errorClear()
+			this.props.fetchRegister(user)
 		}
 	}
 	cancel(){

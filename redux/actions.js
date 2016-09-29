@@ -4,7 +4,7 @@ let actions = {
 			fetch('/server/session.php', {credentials: 'include'})
 			.then(response => response.json())
 			.then(data => dispatch(actions.fetchLoginSync(data)))
-			.catch(error => dispatch(actions.fetchLoginSync(null)))
+			.catch(alert)
 		}
 	},
 	fetchLogoutSync: function(){
@@ -18,13 +18,13 @@ let actions = {
 			.then(response => dispatch(actions.fetchLogoutSync()))
 		}
 	},
-	fetchErrorLogin: function(data){
+	errorLogin: function(data){
 		return {
 			type: 'FETCH_ERROR_LOGIN',
 			payload: data
 		}
 	},
-	fetchErrorRegister: function(data){
+	errorRegister: function(data){
 		return {
 			type: 'FETCH_ERROR_REGISTER',
 			payload: data
@@ -45,20 +45,28 @@ let actions = {
 		return dispatch => {
 			fetch('/server/login.php', {credentials: 'include', method: 'post', body: JSON.stringify(user)})
 			.then(response => response.json())
-			.then(data => dispatch(actions.fetchLoginSync(data)))
-   			.catch(error => dispatch(actions.fetchErrorLogin("Неверный логин или пароль")))
+			.then(data => {
+				dispatch(actions.fetchLoginSync(data.user))
+				dispatch(actions.errorLogin(data.error))
+			})
+   			.catch(alert)
 		}
 	},
-	fetchRegisterSync: function(){
+	fetchRegisterSync: function(data){
 		return {
-			type: 'FETCH_REGISTER'
+			type: 'FETCH_REGISTER',
+			payload: data
 		}
 	},
 	fetchRegisterAsync: function(user){
 		return dispatch => {
 			fetch('/server/register.php', {credentials: 'include', method: 'post', body: JSON.stringify(user)})
-			.then(response => dispatch(actions.fetchRegisterSync()))
-   			.catch(error => dispatch(actions.fetchErrorRegister("Такой логин уже занят")))
+			.then(response => response.json())
+			.then(data => {
+				dispatch(actions.fetchRegisterSync(data.showReg))
+				dispatch(actions.errorRegister(data.error))
+			})
+   			.catch(alert)
 		}
 	},
 	fetchTicketsSync: function(data){

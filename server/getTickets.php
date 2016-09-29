@@ -13,7 +13,6 @@ if(isset($_GET['user_id'])){
 		    array_push($arr, $row);
 		  }
 		}
-	    $dbh = null;
 	    echo json_encode($arr);
 	} catch (PDOException $e) {
 	    print "Error!: " . $e->getMessage() . "<br/>";
