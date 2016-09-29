@@ -4,9 +4,13 @@ export default function reducer(state, action){
 			return {...state,
 				user: null
 			}
-		case 'FETCH_ERROR':
+		case 'FETCH_ERROR_LOGIN':
 			return {...state,
-				error: action.payload
+				error: {...state.error, login: action.payload}
+			}
+		case 'FETCH_ERROR_REGISTER':
+			return {...state,
+				error: {...state.error, register: action.payload}
 			}
 		case 'FETCH_LOGIN':
 			return {...state,
@@ -19,6 +23,14 @@ export default function reducer(state, action){
 		case 'SHOW_ADD_TOGGLE':
 			return {...state,
 				showAdd: !state.showAdd
+			}
+		case 'SHOW_REG_TOGGLE':
+			return {...state,
+				showReg: !state.showReg
+			}
+		case 'ERROR_CLEAR':
+			return {...state,
+				error: {login: '', register: ''}
 			}
 		default:
 			return state;

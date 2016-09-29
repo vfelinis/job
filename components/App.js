@@ -22,8 +22,12 @@ class App extends React.Component{
 					  handleShowAddToggle={this.props.actions.handleShowAddToggle}
 					/> :
 					<NotAuthorized
+					  showReg={this.props.showReg}
 					  error={this.props.error}
 					  fetchLogin={this.props.actions.fetchLoginAsync}
+					  fetchRegister={this.props.actions.fetchRegisterAsync}
+					  errorClear={this.props.actions.errorClear}
+					  handleShowRegToggle={this.props.actions.handleShowRegToggle}
 					/>
 				}
 			</div>
