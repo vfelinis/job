@@ -5,16 +5,15 @@ import Error from './Error'
 class Register extends React.Component{
 	handleRegister(e){
 		e.preventDefault()
-		var formLogin = ReactDom.findDOMNode(this.refs.login).value
   		var formPass = ReactDom.findDOMNode(this.refs.pass).value
   		var formPassConfirm = ReactDom.findDOMNode(this.refs.pass_confirm).value
 		if(formPass != formPassConfirm){
 			this.props.errorRegister("Пароли не совпадают")
 		}
 		else{
-			var user = {login: formLogin, pass: formPass}
+			var form = document.querySelector('form')
 			this.props.errorClear()
-			this.props.fetchRegister(user)
+			this.props.fetchRegister(new FormData(form))
 		}
 	}
 	cancel(){
@@ -33,6 +32,7 @@ class Register extends React.Component{
 							<input
 							  type='text'
 							  ref='login'
+							  name='login'
 							  className="form-control"
 							/>
 						</div>
@@ -43,6 +43,7 @@ class Register extends React.Component{
 							<input
 							  type='password'
 							  ref='pass'
+							  name='pass'
 							  className="form-control"
 							/>
 						</div>

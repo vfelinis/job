@@ -1,4 +1,11 @@
 let actions = {
+	fetchCreateTicket: function(form){
+		return dispatch => {
+			fetch('/server/createTicket.php', {credentials: 'include', method: 'post', body: form})
+			.then(response => actions.handleShowAddToggle())
+   			.catch(alert)
+		}
+	},
 	fetchSessionAsync: function(){
 		return dispatch => {
 			fetch('/server/session.php', {credentials: 'include'})
@@ -41,9 +48,9 @@ let actions = {
 			payload: data
 		}
 	},
-	fetchLoginAsync: function(user){
+	fetchLoginAsync: function(form){
 		return dispatch => {
-			fetch('/server/login.php', {credentials: 'include', method: 'post', body: JSON.stringify(user)})
+			fetch('/server/login.php', {credentials: 'include', method: 'post', body: form})
 			.then(response => response.json())
 			.then(data => {
 				dispatch(actions.fetchLoginSync(data.user))
@@ -58,9 +65,9 @@ let actions = {
 			payload: data
 		}
 	},
-	fetchRegisterAsync: function(user){
+	fetchRegisterAsync: function(form){
 		return dispatch => {
-			fetch('/server/register.php', {credentials: 'include', method: 'post', body: JSON.stringify(user)})
+			fetch('/server/register.php', {credentials: 'include', method: 'post', body: form})
 			.then(response => response.json())
 			.then(data => {
 				dispatch(actions.fetchRegisterSync(data.showReg))

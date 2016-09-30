@@ -1,21 +1,19 @@
 <?php
 session_start();
-//session_write_close();
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$entityBody = file_get_contents('php://input');
-	$user = json_decode($entityBody, true);
+	$data = $_POST;
 	$find_user = null;
 	try {
 	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', 'root', '');
 		$stmt = $dbh->prepare("SELECT * FROM User where login = :login");
-		$stmt->bindValue(':login', $user['login']);
+		$stmt->bindValue(':login', $data['login']);
 		if ($stmt->execute()) {
 		  $find_user = $stmt->fetch();
 		}
 	} catch (PDOException $e) {
 	    die();
 	}
-	if ($find_user['password'] == $user['pass']) {
+	if (password_verify($data['pass'], $find_user['password'])) {
 		$_SESSION['logged_user'] = $find_user;
 		echo json_encode(['user' => ['id' => $find_user['id'], 'login' => $find_user['login'], 'role' => $find_user['role']], 'error' => '']);
 	}

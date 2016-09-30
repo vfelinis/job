@@ -1,15 +1,22 @@
 import React from 'react'
+import ReactDom from 'react-dom'
+import Error from './Error'
 
 class CreateTicket extends React.Component{
+	handleCreateTicket(e){
+	e.preventDefault()
+	var form = document.querySelector('form')
+	this.props.fetchCreateTicket(new FormData(form))
+	}
 	render(){
 		return (
 			<div>
 				<h1>Новый тикет</h1>
-				<form className="form-horizontal">
+				<form onSubmit={this.handleCreateTicket.bind(this)} className="form-horizontal" encType="multipart/form-data">
 					<div className="form-group">
 						<label className="col-sm-2 control-label">Тип проблемы:*</label>
 						<div className="col-sm-3">
-							<select ref='type' className="form-control">
+							<select ref='type' name='type' className="form-control">
 								<option value="Домены">Домены</option>
 								<option value="Редактор">Редактор</option>
 								<option value="Другое">Другое</option>
@@ -22,6 +29,7 @@ class CreateTicket extends React.Component{
 							<input
 							  type='text'
 							  ref='theme'
+							  name='theme'
 							  className="form-control"
 							/>
 						</div>
@@ -31,6 +39,7 @@ class CreateTicket extends React.Component{
 						<div className="col-sm-10">
 							<textarea
 							  ref='text'
+							  name='text'
 							  className="form-control"
 							  rows="7"
 							></textarea>
@@ -41,7 +50,7 @@ class CreateTicket extends React.Component{
 						<div className="col-sm-10">
 							<input
 							  type='text'
-							  ref='link'
+							  name='link'
 							  className="form-control"
 							/>
 						</div>
@@ -51,16 +60,15 @@ class CreateTicket extends React.Component{
 						<div className="col-sm-10">
 							<input
 							  type='file'
-							  ref='file'
+							  name='files[]'
 							  className="form-control"
+							  multiple
 							/>
 						</div>
 					</div>
 					<div className="form-group">
 						<div className="col-sm-offset-2 col-sm-2">
-							<button className="btn btn-default">
-								Создать
-							</button>
+							<input type="submit" value="Создать" className="btn btn-default" />
 						</div>
 					</div>
 				</form>

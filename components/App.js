@@ -19,6 +19,7 @@ class App extends React.Component{
 					  showAdd={this.props.showAdd}
 					  fetchTickets={this.props.actions.fetchTicketsAsync}
 					  fetchLogout={this.props.actions.fetchLogoutAsync}
+					  fetchCreateTicket={this.props.actions.fetchCreateTicket}
 					  handleShowAddToggle={this.props.actions.handleShowAddToggle}
 					/> :
 					<NotAuthorized

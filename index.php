@@ -5,7 +5,6 @@ session_start();
 <html lang="en">
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="dist/style.css">
   <meta charset="UTF-8">
   <title>react-redux</title>
 </head>

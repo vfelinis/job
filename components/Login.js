@@ -1,14 +1,11 @@
 import React from 'react'
-import ReactDom from 'react-dom'
 import Error from './Error'
 
 class Login extends React.Component{
 	handleLogin(e){
 		e.preventDefault()
-		var formLogin = ReactDom.findDOMNode(this.refs.login).value
-  		var formPass = ReactDom.findDOMNode(this.refs.pass).value
-		var user = {login: formLogin, pass: formPass}
-		this.props.fetchLogin(user)
+		var form = document.querySelector('form')
+		this.props.fetchLogin(new FormData(form))
 	}
 	followReg(){
 		this.props.handleShowRegToggle()
@@ -23,9 +20,9 @@ class Login extends React.Component{
 					<div className="form-group">
 						<label className="col-sm-2 control-label">Логин:</label>
 						<div className="col-sm-6">
-							<input
+							<input							  
 							  type='text'
-							  ref='login'
+							  name='login'
 							  className="form-control"
 							/>
 						</div>
@@ -35,7 +32,7 @@ class Login extends React.Component{
 						<div className="col-sm-6">
 							<input
 							  type='password'
-							  ref='pass'
+							  name='pass'
 							  className="form-control"
 							/>
 						</div>
