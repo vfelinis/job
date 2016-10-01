@@ -12,6 +12,7 @@ class CreateTicket extends React.Component{
 		return (
 			<div>
 				<h1>Новый тикет</h1>
+				{this.props.error ? <Error error={this.props.error} /> : null}
 				<form onSubmit={this.handleCreateTicket.bind(this)} className="form-horizontal" encType="multipart/form-data">
 					<div className="form-group">
 						<label className="col-sm-2 control-label">Тип проблемы:*</label>
@@ -68,7 +69,7 @@ class CreateTicket extends React.Component{
 					</div>
 					<div className="form-group">
 						<div className="col-sm-offset-2 col-sm-2">
-							<input type="submit" value="Создать" className="btn btn-default" />
+							<input type="submit" value="Создать" className="btn btn-success" />
 						</div>
 					</div>
 				</form>

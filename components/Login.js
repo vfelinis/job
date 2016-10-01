@@ -9,7 +9,7 @@ class Login extends React.Component{
 	}
 	followReg(){
 		this.props.handleShowRegToggle()
-		this.props.errorClear()
+		this.props.handleErrorClear()
 	}
 	render(){
 		return (

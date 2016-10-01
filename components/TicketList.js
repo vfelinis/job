@@ -1,7 +1,7 @@
 import React from 'react'
 import TicketItem from './TicketItem'
 
-class TodoList extends React.Component{
+class TicketList extends React.Component{
 	componentDidMount(){
 		this.props.fetchTickets(this.props.user.id)
 	}
@@ -24,7 +24,12 @@ class TodoList extends React.Component{
 					<tbody>
 					{
 						this.props.tickets.map((ticket) => {
-							return 	<TicketItem key={ticket.id} ticket={ticket}/>
+							return 	<TicketItem
+										key={ticket.id}
+										ticket={ticket}
+										handleShowDetailsToggle={this.props.handleShowDetailsToggle}
+										fetchTicketDetails={this.props.fetchTicketDetails}
+									/>
 						})
 					}
 					</tbody>
@@ -34,4 +39,4 @@ class TodoList extends React.Component{
 	}
 }
 
-export default TodoList
+export default TicketList

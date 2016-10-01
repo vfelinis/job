@@ -1,16 +1,21 @@
 export default function reducer(state, action){
 	switch(action.type) {
+		case 'FETCH_TICKET_DETAILS':
+			return {...state,
+				ticket: action.payload
+			}
+		case 'FETCH_CREATE_TICKET':
+			return {...state,
+				showAdd: action.showAdd
+			}
 		case 'FETCH_LOGOUT':
 			return {...state,
-				user: {}
+				user: {},
+				tickets: []
 			}
-		case 'FETCH_ERROR_LOGIN':
+		case 'ERROR':
 			return {...state,
-				error: {...state.error, login: action.payload}
-			}
-		case 'FETCH_ERROR_REGISTER':
-			return {...state,
-				error: {...state.error, register: action.payload}
+				error: action.payload
 			}
 		case 'FETCH_LOGIN':
 			return {...state,
@@ -32,9 +37,13 @@ export default function reducer(state, action){
 			return {...state,
 				showReg: !state.showReg
 			}
+		case 'SHOW_DETAILS_TOGGLE':
+			return {...state,
+				showDetails: !state.showDetails
+			}
 		case 'ERROR_CLEAR':
 			return {...state,
-				error: {login: '', register: ''}
+				error: ''
 			}
 		default:
 			return state;

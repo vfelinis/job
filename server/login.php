@@ -2,7 +2,6 @@
 session_start();
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$data = $_POST;
-	$find_user = null;
 	try {
 	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', 'root', '');
 		$stmt = $dbh->prepare("SELECT * FROM User where login = :login");

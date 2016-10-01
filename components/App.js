@@ -17,18 +17,23 @@ class App extends React.Component{
 					  user= {this.props.user}
 					  tickets={this.props.tickets}
 					  showAdd={this.props.showAdd}
+					  error={this.props.error}
+					  showDetails={this.props.showDetails}
+					  ticket={this.props.ticket}
 					  fetchTickets={this.props.actions.fetchTicketsAsync}
 					  fetchLogout={this.props.actions.fetchLogoutAsync}
-					  fetchCreateTicket={this.props.actions.fetchCreateTicket}
+					  fetchCreateTicket={this.props.actions.fetchCreateTicketAsync}
+					  fetchTicketDetails={this.props.actions.fetchTicketDetailsAsync}
 					  handleShowAddToggle={this.props.actions.handleShowAddToggle}
+					  handleShowDetailsToggle={this.props.actions.handleShowDetailsToggle}
 					/> :
 					<NotAuthorized
 					  showReg={this.props.showReg}
 					  error={this.props.error}
 					  fetchLogin={this.props.actions.fetchLoginAsync}
 					  fetchRegister={this.props.actions.fetchRegisterAsync}
-					  errorRegister={this.props.actions.errorRegister}
-					  errorClear={this.props.actions.errorClear}
+					  handleError={this.props.actions.handleError}
+					  handleErrorClear={this.props.actions.handleErrorClear}
 					  handleShowRegToggle={this.props.actions.handleShowRegToggle}
 					/>
 				}

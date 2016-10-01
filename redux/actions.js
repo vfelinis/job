@@ -1,9 +1,36 @@
 let actions = {
-	fetchCreateTicket: function(form){
+	fetchTicketDetailsSync: function(ticket){
+		return {
+			type: 'FETCH_TICKET_DETAILS',
+			payload: ticket
+		}
+	},
+	fetchTicketDetailsAsync: function(ticket_id){
+		return dispatch => {
+			fetch(`/server/ticketDetails.php?ticket_id=${ticket_id}`, {credentials: 'include'})
+			.then(response => response.json())
+			.then(data => {
+				dispatch(actions.fetchTicketDetailsSync(data))
+				dispatch(actions.handleShowDetailsToggle())
+			})
+   			.catch(alert)
+		}
+	},
+	fetchCreateTicketSync: function(showAdd){
+		return {
+			type: 'FETCH_CREATE_TICKET',
+			payload: showAdd
+		}
+	},
+	fetchCreateTicketAsync: function(form){
 		return dispatch => {
 			fetch('/server/createTicket.php', {credentials: 'include', method: 'post', body: form})
-			.then(response => actions.handleShowAddToggle())
-   			.catch(alert)
+			.then(response => response.json())
+			.then(data => {
+				dispatch(actions.fetchCreateTicketSync(data.showAdd))
+				dispatch(actions.handleErrorClear())
+			})
+   			.catch(error => dispatch(actions.handleError("Неожиданная ошибка")))
 		}
 	},
 	fetchSessionAsync: function(){
@@ -25,27 +52,21 @@ let actions = {
 			.then(response => dispatch(actions.fetchLogoutSync()))
 		}
 	},
-	errorLogin: function(data){
+	handleError: function(error){
 		return {
-			type: 'FETCH_ERROR_LOGIN',
-			payload: data
+			type: 'ERROR',
+			payload: error
 		}
 	},
-	errorRegister: function(data){
-		return {
-			type: 'FETCH_ERROR_REGISTER',
-			payload: data
-		}
-	},
-	errorClear: function(){
+	handleErrorClear: function(){
 		return {
 			type: 'ERROR_CLEAR'
 		}
 	},
-	fetchLoginSync: function(data){
+	fetchLoginSync: function(user){
 		return {
 			type: 'FETCH_LOGIN',
-			payload: data
+			payload: user
 		}
 	},
 	fetchLoginAsync: function(form){
@@ -54,15 +75,15 @@ let actions = {
 			.then(response => response.json())
 			.then(data => {
 				dispatch(actions.fetchLoginSync(data.user))
-				dispatch(actions.errorLogin(data.error))
+				dispatch(actions.handleError(data.error))
 			})
    			.catch(alert)
 		}
 	},
-	fetchRegisterSync: function(data){
+	fetchRegisterSync: function(showReg){
 		return {
 			type: 'FETCH_REGISTER',
-			payload: data
+			payload: showReg
 		}
 	},
 	fetchRegisterAsync: function(form){
@@ -71,20 +92,20 @@ let actions = {
 			.then(response => response.json())
 			.then(data => {
 				dispatch(actions.fetchRegisterSync(data.showReg))
-				dispatch(actions.errorRegister(data.error))
+				dispatch(actions.handleError(data.error))
 			})
    			.catch(alert)
 		}
 	},
-	fetchTicketsSync: function(data){
+	fetchTicketsSync: function(tickets){
 		return {
 			type: 'FETCH_TICKETS',
-			payload: data
+			payload: tickets
 		}
 	},
 	fetchTicketsAsync: function(user_id){
 		return dispatch => {
-			fetch('/server/getTickets.php?user_id='+user_id, {credentials: 'include'})
+			fetch(`/server/getTickets.php?user_id=${user_id}`, {credentials: 'include'})
 			.then(response => response.json())
 			.then(function(data) {
 				dispatch(actions.fetchTicketsSync(data))
@@ -99,6 +120,11 @@ let actions = {
 	handleShowRegToggle: function(){
 		return {
 			type: 'SHOW_REG_TOGGLE'
+		}
+	},
+	handleShowDetailsToggle: function(){
+		return {
+			type: 'SHOW_DETAILS_TOGGLE'
 		}
 	}
 

@@ -10,17 +10,17 @@ class NotAuthorized extends React.Component{
 				{
 					this.props.showReg ?
 					<Register
-						error={this.props.error.register}
+						error={this.props.error}
 						fetchRegister={this.props.fetchRegister}
-						errorRegister={this.props.errorRegister}
+						handleError={this.props.handleError}
 						handleShowRegToggle={this.props.handleShowRegToggle}
-						errorClear={this.props.errorClear}
+						handleErrorClear={this.props.handleErrorClear}
 					/> :
 					<Login
-						error={this.props.error.login}
+						error={this.props.error}
 						fetchLogin={this.props.fetchLogin}
 						handleShowRegToggle={this.props.handleShowRegToggle}
-						errorClear={this.props.errorClear}
+						handleErrorClear={this.props.handleErrorClear}
 					/>
 				}
 			</div>

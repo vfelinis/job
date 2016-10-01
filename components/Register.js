@@ -8,17 +8,17 @@ class Register extends React.Component{
   		var formPass = ReactDom.findDOMNode(this.refs.pass).value
   		var formPassConfirm = ReactDom.findDOMNode(this.refs.pass_confirm).value
 		if(formPass != formPassConfirm){
-			this.props.errorRegister("Пароли не совпадают")
+			this.props.handleError("Пароли не совпадают")
 		}
 		else{
 			var form = document.querySelector('form')
-			this.props.errorClear()
+			this.props.handleErrorClear()
 			this.props.fetchRegister(new FormData(form))
 		}
 	}
 	cancel(){
 		this.props.handleShowRegToggle()
-		this.props.errorClear()
+		this.props.handleErrorClear()
 	}
 	render(){
 		return (

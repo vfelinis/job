@@ -1,5 +1,5 @@
 import React from 'react'
-import TicketList from './TicketList'
+import Tickets from './Tickets'
 import CreateTicket from './CreateTicket'
 
 class Authorized extends React.Component{
@@ -14,14 +14,19 @@ class Authorized extends React.Component{
 				{ this.props.showAdd ?
 					<CreateTicket
 					  user= {this.props.user}
+					  error={this.props.error}
 					  fetchCreateTicket={this.props.fetchCreateTicket}
 					  handleShowAddToggle={this.props.handleShowAddToggle}
 					/> :
-					<TicketList
+					<Tickets
 					  user= {this.props.user}
 					  tickets={this.props.tickets}
+					  showDetails={this.props.showDetails}
+					  ticket={this.props.ticket}
 					  fetchTickets={this.props.fetchTickets}
+					  fetchTicketDetails={this.props.fetchTicketDetails}
 					  handleShowAddToggle={this.props.handleShowAddToggle}
+					  handleShowDetailsToggle={this.props.handleShowDetailsToggle}
 					/>
 				}
 			</div>
