@@ -11,23 +11,31 @@ class App extends React.Component{
 	}
 	render(){
 		return (
-			<div className="container">
+			<div className="main container">
 				{ 'id' in this.props.user ?
 					<Authorized
-					  user= {this.props.user}
+					  user={this.props.user}
 					  tickets={this.props.tickets}
 					  showAdd={this.props.showAdd}
 					  error={this.props.error}
+					  success={this.props.success}
 					  showDetails={this.props.showDetails}
 					  ticket={this.props.ticket}
+					  comments={this.props.comments}
 					  fetchTickets={this.props.actions.fetchTicketsAsync}
 					  fetchLogout={this.props.actions.fetchLogoutAsync}
 					  fetchCreateTicket={this.props.actions.fetchCreateTicketAsync}
 					  fetchTicketDetails={this.props.actions.fetchTicketDetailsAsync}
+					  fetchComments={this.props.actions.fetchCommentsAsync}
+					  fetchCreateComment={this.props.actions.fetchCreateCommentAsync}
+					  fetchChangeStatus={this.props.actions.fetchChangeStatusAsync}
+					  fetchChangeType={this.props.actions.fetchChangeTypeAsync}
 					  handleShowAddToggle={this.props.actions.handleShowAddToggle}
 					  handleShowDetailsToggle={this.props.actions.handleShowDetailsToggle}
+					  handleClearTicketAndComments={this.props.actions.handleClearTicketAndComments}
 					/> :
 					<NotAuthorized
+					  user={this.props.user}
 					  showReg={this.props.showReg}
 					  error={this.props.error}
 					  fetchLogin={this.props.actions.fetchLoginAsync}

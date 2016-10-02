@@ -1,17 +1,67 @@
 let actions = {
+	fetchChangeStatusSync: function(status){
+		return {
+			type: 'CHANGE_STATUS',
+			payload: status
+		}
+	},
+	fetchChangeStatusAsync: function(ticketId, status){
+		return dispatch => {
+			fetch(`/server/changeTicketStatus.php?ticket_id=${ticketId}&status=${status}`, {credentials: 'include'})
+			.then(response => response.json())
+			.then(data => dispatch(actions.fetchChangeStatusSync(data.status)))
+   			.catch(alert)
+		}
+	},
+	fetchChangeTypeSync: function(type){
+		return {
+			type: 'CHANGE_TYPE',
+			payload: type
+		}
+	},
+	fetchChangeTypeAsync: function(ticketId, type){
+		return dispatch => {
+			fetch(`/server/changeTicketType.php?ticket_id=${ticketId}&type=${type}`, {credentials: 'include'})
+			.then(response => response.json())
+			.then(data => dispatch(actions.fetchChangeTypeSync(data.type)))
+   			.catch(alert)
+		}
+	},
+	fetchCreateCommentAsync: function(form, ticketId){
+		return dispatch => {
+			fetch('/server/createComment.php', {credentials: 'include', method: 'post', body: form})
+			.then(response => dispatch(actions.fetchCommentsAsync(ticketId)))
+   			.catch(alert)
+		}
+	},
+	fetchCommentsSync: function(comments){
+		return {
+			type: 'FETCH_COMMENTS',
+			payload: comments
+		}
+	},
+	fetchCommentsAsync: function(ticketId){
+		return dispatch => {
+			fetch(`/server/getComments.php?ticket_id=${ticketId}`, {credentials: 'include'})
+			.then(response => response.json())
+			.then(data => {
+				dispatch(actions.fetchCommentsSync(data))
+			})
+   			.catch(alert)
+		}
+	},
 	fetchTicketDetailsSync: function(ticket){
 		return {
 			type: 'FETCH_TICKET_DETAILS',
 			payload: ticket
 		}
 	},
-	fetchTicketDetailsAsync: function(ticket_id){
+	fetchTicketDetailsAsync: function(ticketId){
 		return dispatch => {
-			fetch(`/server/ticketDetails.php?ticket_id=${ticket_id}`, {credentials: 'include'})
+			fetch(`/server/ticketDetails.php?ticket_id=${ticketId}`, {credentials: 'include'})
 			.then(response => response.json())
 			.then(data => {
 				dispatch(actions.fetchTicketDetailsSync(data))
-				dispatch(actions.handleShowDetailsToggle())
 			})
    			.catch(alert)
 		}
@@ -27,10 +77,17 @@ let actions = {
 			fetch('/server/createTicket.php', {credentials: 'include', method: 'post', body: form})
 			.then(response => response.json())
 			.then(data => {
+				dispatch(actions.handleShowSuccess(data.id))
 				dispatch(actions.fetchCreateTicketSync(data.showAdd))
 				dispatch(actions.handleErrorClear())
 			})
-   			.catch(error => dispatch(actions.handleError("Неожиданная ошибка")))
+   			.catch(alert)
+		}
+	},
+	handleShowSuccess: function(message){
+		return {
+			type: 'SHOW_SUCCESS',
+			payload: message
 		}
 	},
 	fetchSessionAsync: function(){
@@ -103,9 +160,9 @@ let actions = {
 			payload: tickets
 		}
 	},
-	fetchTicketsAsync: function(user_id){
+	fetchTicketsAsync: function(userId){
 		return dispatch => {
-			fetch(`/server/getTickets.php?user_id=${user_id}`, {credentials: 'include'})
+			fetch(`/server/getTickets.php?user_id=${userId}`, {credentials: 'include'})
 			.then(response => response.json())
 			.then(function(data) {
 				dispatch(actions.fetchTicketsSync(data))
@@ -126,8 +183,12 @@ let actions = {
 		return {
 			type: 'SHOW_DETAILS_TOGGLE'
 		}
+	},
+	handleClearTicketAndComments: function(){
+		return {
+			type: 'CLEAR_TICKET_AND_COMMENTS'
+		}
 	}
-
 }
 
 export default actions

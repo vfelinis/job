@@ -1,9 +1,17 @@
 import React from 'react'
 
 class CreateComment extends React.Component{
+	handleCreateComment(e){
+		e.preventDefault()
+		var form = document.querySelector('form')
+		var formData = new FormData(form)
+		formData.append("ticket_id", this.props.ticketId)
+		this.props.fetchCreateComment(formData, this.props.ticketId)
+		form.reset()
+	}
 	render(){
 		return (
-			<div style={{"background":"#fafafa", "borderTop": "2px solid #aaa"}}>
+			<div className="createComment">
 			<form className="form-horizontal" encType="multipart/form-data">
 				<div className="form-group">
 					<label className="col-sm-offset-3 control-label">Текст комментария:*</label>
@@ -28,7 +36,7 @@ class CreateComment extends React.Component{
 				</div>
 				<div className="form-group">
 					<div className="col-sm-offset-3">
-						<button className="btn btn-success">Добавить комментарий</button>
+						<button onClick={this.handleCreateComment.bind(this)} className="btn btn-success">Добавить комментарий</button>
 					</div>
 				</div>
 			</form>

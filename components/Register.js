@@ -16,7 +16,7 @@ class Register extends React.Component{
 			this.props.fetchRegister(new FormData(form))
 		}
 	}
-	cancel(){
+	handleCancel(){
 		this.props.handleShowRegToggle()
 		this.props.handleErrorClear()
 	}
@@ -64,7 +64,7 @@ class Register extends React.Component{
 						</div>
 					</div>
 				</form>
-				<button onClick={this.cancel.bind(this)} className="btn btn-default">Отменить</button>
+				<button onClick={this.handleCancel.bind(this)} className="btn btn-default">Отменить</button>
 			</div>
 		)
 	}

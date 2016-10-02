@@ -7,9 +7,11 @@ if(isset($_GET['user_id'])){
 	}
 	try {
 	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', 'root', '');
-		$stmt = $dbh->prepare("SELECT * FROM Ticket where user = :user_id Order by 'date' desc LIMIT :lim");
+		$stmt = $dbh->prepare("SELECT * FROM Ticket where user = :user_id");
 		$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-		$stmt->bindValue(':lim', 20, PDO::PARAM_INT);
+		if ($_SESSION['logged_user']['role'] == 2) {
+			$stmt = $dbh->prepare("SELECT * FROM Ticket");
+		}
 		$arr = [];
 		$stmt->execute();
 		while ($row = $stmt->fetch()) {

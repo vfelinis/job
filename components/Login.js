@@ -7,7 +7,7 @@ class Login extends React.Component{
 		var form = document.querySelector('form')
 		this.props.fetchLogin(new FormData(form))
 	}
-	followReg(){
+	handleFollowReg(){
 		this.props.handleShowRegToggle()
 		this.props.handleErrorClear()
 	}
@@ -44,7 +44,7 @@ class Login extends React.Component{
 					</div>
 				</form>
 				<div className="col-sm-offset-2">
-					<button onClick={this.followReg.bind(this)} className="btn btn-primary btn-lg">Зарегистрироваться</button>
+					<button onClick={this.handleFollowReg.bind(this)} className="btn btn-primary btn-lg">Зарегистрироваться</button>
 				</div>
 			</div>
 		)

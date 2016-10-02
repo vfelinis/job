@@ -1,8 +1,9 @@
 import React from 'react'
 
 class TicketItem extends React.Component{
-	clickDetails(){
+	handleClickDetails(){
 		this.props.fetchTicketDetails(this.props.ticket.id)
+		this.props.handleShowDetailsToggle()
 	}
 	render(){
 		return (
@@ -13,7 +14,7 @@ class TicketItem extends React.Component{
 				<td>{this.props.ticket.theme}</td>
 				<td>{this.props.ticket.date}</td>
 				<td>
-					<button onClick={this.clickDetails.bind(this)} className="btn btn-xs btn-primary">
+					<button onClick={this.handleClickDetails.bind(this)} className="btn btn-xs btn-primary">
 	                    Подробнее
 	                </button>
 				</td>

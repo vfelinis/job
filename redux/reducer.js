@@ -1,5 +1,21 @@
 export default function reducer(state, action){
 	switch(action.type) {
+		case 'SHOW_SUCCESS':
+			return {...state,
+				success: action.payload
+			}
+		case 'CHANGE_STATUS':
+			return {...state,
+				ticket: {...state.ticket, status: action.payload}
+			}
+		case 'CHANGE_TYPE':
+			return {...state,
+				ticket: {...state.ticket, type: action.payload}
+			}
+		case 'FETCH_COMMENTS':
+			return {...state,
+				comments: action.payload
+			}
 		case 'FETCH_TICKET_DETAILS':
 			return {...state,
 				ticket: action.payload
@@ -9,9 +25,16 @@ export default function reducer(state, action){
 				showAdd: action.showAdd
 			}
 		case 'FETCH_LOGOUT':
-			return {...state,
+			return {
+				tickets: [],
+				showReg: false,
+				showAdd: false,
+				showDetails: false,
 				user: {},
-				tickets: []
+				error: '',
+				success: '',
+				ticket: {},
+				comments: []
 			}
 		case 'ERROR':
 			return {...state,
@@ -39,7 +62,13 @@ export default function reducer(state, action){
 			}
 		case 'SHOW_DETAILS_TOGGLE':
 			return {...state,
-				showDetails: !state.showDetails
+				showDetails: !state.showDetails,
+				success: ''
+			}
+		case 'CLEAR_TICKET_AND_COMMENTS':
+			return {...state,
+				ticket: {},
+				comments: []
 			}
 		case 'ERROR_CLEAR':
 			return {...state,

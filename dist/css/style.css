@@ -1,0 +1,32 @@
+.comments{
+	
+}
+.commentList{
+	margin-top: 20px;
+}
+.commentItem{
+	border-bottom: 1px solid #eee;
+	margin: 15px;
+}
+.createComment{
+	background: #fafafa;
+	border-top: 2px solid #aaa;
+	margin-top: 20px;
+	padding: 15px;
+}
+.floatRight{
+	float: right;
+}
+.main{
+	position: relative;
+	overflow: hidden;
+}
+.ticketDetails{
+	background: #eee;
+	padding: 10px;
+	border-top: 2px solid #555;
+	border-bottom: 2px solid #555;
+}
+a{
+	cursor: pointer;
+}

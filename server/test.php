@@ -1,10 +1,9 @@
 <?php
-try {
-	for ($i=0; $i < 5; $i++) { 
-		$id = $i;
-	}	
-} catch (Exception $e) {
-	
+$user = 3;
+$role = 2;
+if ($user != 5 || $role != 2) {
+	echo "pizdec";
 }
-
-echo $id;
+else{
+	echo "good";
+}
