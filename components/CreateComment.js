@@ -5,8 +5,9 @@ class CreateComment extends React.Component{
 		e.preventDefault()
 		var form = document.querySelector('form')
 		var formData = new FormData(form)
-		formData.append("ticket_id", this.props.ticketId)
-		this.props.fetchCreateComment(formData, this.props.ticketId)
+		formData.append("ticket_id", this.props.ticket.id)
+		formData.append("ticket_status", this.props.ticket.status)
+		this.props.fetchCreateComment(formData, this.props.ticket.id)
 		form.reset()
 	}
 	render(){

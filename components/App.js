@@ -30,6 +30,7 @@ class App extends React.Component{
 					  fetchCreateComment={this.props.actions.fetchCreateCommentAsync}
 					  fetchChangeStatus={this.props.actions.fetchChangeStatusAsync}
 					  fetchChangeType={this.props.actions.fetchChangeTypeAsync}
+					  fetchChangeZone={this.props.actions.fetchChangeZoneAsync}
 					  handleShowAddToggle={this.props.actions.handleShowAddToggle}
 					  handleShowDetailsToggle={this.props.actions.handleShowDetailsToggle}
 					  handleClearTicketAndComments={this.props.actions.handleClearTicketAndComments}

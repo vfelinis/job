@@ -1,4 +1,21 @@
 let actions = {
+	fetchChangeZoneSync: function(timeZone){
+		return {
+			type: 'CHANGE_ZONE',
+			payload: timeZone
+		}
+	},
+	fetchChangeZoneAsync: function(timeZone, userId){
+		return dispatch => {
+			fetch(`/server/changeZone.php?time_zone=${timeZone}`, {credentials: 'include'})
+			.then(response => response.json())
+			.then(data => {
+				dispatch(actions.fetchChangeZoneSync(data.zone))
+				dispatch(actions.fetchTicketsAsync(userId))
+			})
+   			.catch(alert)
+		}
+	},
 	fetchChangeStatusSync: function(status){
 		return {
 			type: 'CHANGE_STATUS',
@@ -30,7 +47,10 @@ let actions = {
 	fetchCreateCommentAsync: function(form, ticketId){
 		return dispatch => {
 			fetch('/server/createComment.php', {credentials: 'include', method: 'post', body: form})
-			.then(response => dispatch(actions.fetchCommentsAsync(ticketId)))
+			.then(response => {
+				dispatch(actions.fetchCommentsAsync(ticketId))
+				dispatch(actions.fetchTicketDetailsAsync(ticketId))
+			})
    			.catch(alert)
 		}
 	},

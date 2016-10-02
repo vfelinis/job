@@ -1,5 +1,9 @@
 export default function reducer(state, action){
 	switch(action.type) {
+		case 'CHANGE_ZONE':
+			return {...state,
+				user: {...state.user, zone: action.payload}
+			}
 		case 'SHOW_SUCCESS':
 			return {...state,
 				success: action.payload

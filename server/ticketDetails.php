@@ -1,4 +1,5 @@
 <?php
+include('timeService.php');
 session_start();
 if(isset($_GET['ticket_id'])){
 	$ticket_id = $_GET['ticket_id'];
@@ -15,6 +16,7 @@ if(isset($_GET['ticket_id'])){
 			exit();
 		}
 		$files = split(':', $row['file']);
+		$zone = $_SESSION['logged_user']['zone'];
 		$ticket = [
 			'id' => $row['id'],
 			'status' => $row['status'],
@@ -22,7 +24,7 @@ if(isset($_GET['ticket_id'])){
 			'theme' => $row['theme'],
 			'full_text' => $row['full_text'],
 			'link' => $row['link'],
-			'date' => $row['date'],
+			'date' => TimeService::dateFull($row['date'], ' в ', $zone),
 			'files' => $files
 		];
 	    echo json_encode($ticket);

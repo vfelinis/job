@@ -1,4 +1,5 @@
 <?php
+include('timeService.php');
 session_start();
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (!$_SESSION['logged_user']) {
@@ -6,13 +7,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	$data = $_POST;
 	try {
+		$date = TimeService::getCurDate();
 	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', 'root', '');
-		$stmt = $dbh->prepare("INSERT INTO Ticket (status, type, theme, full_text, link, user) VALUES (:status, :type, :theme, :full_text, :link, :user)");
+		$stmt = $dbh->prepare("INSERT INTO Ticket (status, type, theme, full_text, link, date, update_date, user) VALUES (:status, :type, :theme, :full_text, :link, :date, :update_date, :user)");
 		$stmt->bindValue(':status', 'Новый', PDO::PARAM_STR);
 		$stmt->bindValue(':type', $data['type'], PDO::PARAM_STR);
 		$stmt->bindValue(':theme', $data['theme'], PDO::PARAM_STR);
 		$stmt->bindValue(':full_text', $data['text'], PDO::PARAM_STR);
 		$stmt->bindValue(':link', $data['link'], PDO::PARAM_STR);
+		$stmt->bindValue(':date', $date, PDO::PARAM_STR);
+		$stmt->bindValue(':update_date', $date, PDO::PARAM_STR);
 		$stmt->bindValue(':user', $_SESSION['logged_user']['id'], PDO::PARAM_INT);
 		$stmt->execute();
 		$id = $dbh->lastInsertId();

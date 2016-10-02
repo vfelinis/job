@@ -8,7 +8,7 @@ if(isset($_GET['ticket_id'], $_GET['type'])){
 	}
 	try {
 	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', 'root', '');
-		$stmt = $dbh->prepare("UPDATE Ticket SET type = :type where id = :ticket_id");
+		$stmt = $dbh->prepare("UPDATE Ticket SET type = :type WHERE id = :ticket_id");
 		$stmt->bindValue(':ticket_id', $ticket_id, PDO::PARAM_INT);
 		$stmt->bindValue(':type', $type, PDO::PARAM_STR);
 		$stmt->execute();

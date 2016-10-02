@@ -13,8 +13,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	    die();
 	}
 	if (password_verify($data['pass'], $find_user['password'])) {
-		$_SESSION['logged_user'] = $find_user;
-		echo json_encode(['user' => ['id' => $find_user['id'], 'login' => $find_user['login'], 'role' => $find_user['role']], 'error' => '']);
+		$user = ['id' => $find_user['id'], 'login' => $find_user['login'], 'zone' => $find_user['zone'], 'role' => $find_user['role']];
+		$_SESSION['logged_user'] = $user;
+		echo json_encode(['user' => $user, 'error' => '']);
 	}
 	else{
 		echo '{ "user": {}, "error": "Неправильный логин или пароль" }';

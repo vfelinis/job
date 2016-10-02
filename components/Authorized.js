@@ -8,7 +8,9 @@ class Authorized extends React.Component{
 			<div>
 				{
 					this.props.user ?
-					<div>Пользователь {this.props.user.login}, <a onClick={this.props.fetchLogout}>выход</a></div> :
+					<div>
+						Пользователь {this.props.user.login}, <a onClick={this.props.fetchLogout}>выход</a>
+					</div> :
 					null
 				}
 				{ this.props.showAdd ?
@@ -31,6 +33,7 @@ class Authorized extends React.Component{
 					  fetchCreateComment={this.props.fetchCreateComment}
 					  fetchChangeStatus={this.props.fetchChangeStatus}
 					  fetchChangeType={this.props.fetchChangeType}
+					  fetchChangeZone={this.props.fetchChangeZone}
 					  handleShowAddToggle={this.props.handleShowAddToggle}
 					  handleShowDetailsToggle={this.props.handleShowDetailsToggle}
 					  handleClearTicketAndComments={this.props.handleClearTicketAndComments}

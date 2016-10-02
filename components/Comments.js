@@ -13,7 +13,7 @@ class Comments extends React.Component{
 					handleClearTicketAndComments={this.props.handleClearTicketAndComments}
 				/>
 				<CreateComment
-					ticketId={this.props.ticket.id}
+					ticket={this.props.ticket}
 					fetchCreateComment={this.props.fetchCreateComment}
 				/>
 			</div>

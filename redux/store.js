@@ -16,7 +16,8 @@ let state = {
 	error: '',
 	success: '',
 	ticket: {},
-	comments: []
+	comments: [],
+	pagination: 1
 }
 
 export default function configureStore(initialState = state){
