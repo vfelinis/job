@@ -3,10 +3,47 @@ import ReactDom from 'react-dom'
 import Error from './Error'
 
 class CreateTicket extends React.Component{
+	constructor(){
+		super()
+		this.state = {
+			theme : '',
+			text: '',
+			themeError: false,
+			textError: false
+		}
+	}
+	handleChangeTheme(e){
+		this.setState({
+			theme: e.target.value
+		})
+	}
+	handleChangeText(e){
+		this.setState({
+			text: e.target.value
+		})
+	}
 	handleCreateTicket(e){
-	e.preventDefault()
-	var form = document.querySelector('form')
-	this.props.fetchCreateTicket(new FormData(form))
+		e.preventDefault()
+		this.setState({
+			theme: ReactDom.findDOMNode(this.refs.theme).value,
+			text: ReactDom.findDOMNode(this.refs.text).value
+		})
+		if (this.state.theme && this.state.text) {
+			this.setState({
+				theme : '',
+				text: '',
+				themeError: false,
+				textError: false
+			})
+			var form = document.querySelector('form')
+			this.props.fetchCreateTicket(new FormData(form))
+		}
+		else{
+			this.setState({
+				themeError: !this.state.theme,
+				textError: !this.state.text
+			})
+		}
 	}
 	render(){
 		return (
@@ -32,7 +69,9 @@ class CreateTicket extends React.Component{
 							  ref='theme'
 							  name='theme'
 							  className="form-control"
+							  onChange={this.handleChangeTheme.bind(this)}
 							/>
+							<span className={this.state.themeError ? 'alert-danger fade in' : 'hidden'}>Поле обязательно для заполнения</span>
 						</div>
 					</div>
 					<div className="form-group">
@@ -43,7 +82,9 @@ class CreateTicket extends React.Component{
 							  name='text'
 							  className="form-control"
 							  rows="7"
+							  onChange={this.handleChangeText.bind(this)}
 							></textarea>
+							<span className={this.state.textError ? 'alert-danger fade in' : 'hidden'}>Поле обязательно для заполнения</span>
 						</div>
 					</div>
 					<div className="form-group">

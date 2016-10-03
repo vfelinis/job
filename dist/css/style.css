@@ -1,5 +1,8 @@
-.comments{
-	
+a{
+	cursor: pointer;
+}
+li>a{
+	cursor: pointer;
 }
 .commentList{
 	margin-top: 20px;
@@ -17,16 +20,19 @@
 .floatRight{
 	float: right;
 }
+.hidden{
+	display: none;
+}
 .main{
 	position: relative;
 	overflow: hidden;
+}
+.pagination_box{
+	text-align: center;
 }
 .ticketDetails{
 	background: #eee;
 	padding: 10px;
 	border-top: 2px solid #555;
 	border-bottom: 2px solid #555;
-}
-a{
-	cursor: pointer;
 }

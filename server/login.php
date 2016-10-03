@@ -1,9 +1,10 @@
 <?php
+include('dbConfig.php');
 session_start();
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$data = $_POST;
 	try {
-	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', 'root', '');
+	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', DbConfig::$user, DbConfig::$pass);
 		$stmt = $dbh->prepare("SELECT * FROM User where login = :login");
 		$stmt->bindValue(':login', $data['login']);
 		if ($stmt->execute()) {
@@ -13,7 +14,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	    die();
 	}
 	if (password_verify($data['pass'], $find_user['password'])) {
-		$user = ['id' => $find_user['id'], 'login' => $find_user['login'], 'zone' => $find_user['zone'], 'role' => $find_user['role']];
+		$user = ['id' => $find_user['id'],
+				 'login' => $find_user['login'],
+				 'zone' => $find_user['zone'],
+				 'role' => $find_user['role']];
 		$_SESSION['logged_user'] = $user;
 		echo json_encode(['user' => $user, 'error' => '']);
 	}

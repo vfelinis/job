@@ -17,7 +17,8 @@ let state = {
 	success: '',
 	ticket: {},
 	comments: [],
-	pagination: 1
+	pages: [],
+	ticketsSlice: 4
 }
 
 export default function configureStore(initialState = state){

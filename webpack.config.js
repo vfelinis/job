@@ -2,7 +2,6 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-	devtool: 'inline-source-map',
 	entry: [
 		'whatwg-fetch',
 		'babel-polyfill',
@@ -14,7 +13,21 @@ module.exports = {
 		publicPath: 'dist/js'
 	},
 	plugins: [
-    	new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.DedupePlugin(),
+    	new webpack.optimize.UglifyJsPlugin({
+	        beautify: false,
+	        comments: false,
+	        compress: {
+	            sequences     : true,
+	            booleans      : true,
+	            loops         : true,
+	            unused      : true,
+	            warnings    : false,
+	            drop_console: true,
+	            unsafe      : true
+	        }
+    	}),
+    	new webpack.optimize.OccurrenceOrderPlugin(),
     	new webpack.NoErrorsPlugin()
     ],
 	module: {

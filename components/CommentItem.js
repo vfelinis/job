@@ -21,7 +21,7 @@ class CommentItem extends React.Component{
 								function(comment){
 									let fileExt = comment.file.split(".")
 									let path = `/files/comments/${comment.id}.${fileExt[fileExt.length-1]}`
-									return <div>{comment.file} <a href={path} download>скачать</a></div>
+									return <div>{comment.file} <a href={path} target="_blank">открыть</a></div>
 								}(this.props.comment)
 							}
 						</div> :

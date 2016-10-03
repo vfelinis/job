@@ -189,6 +189,12 @@ let actions = {
    			})
 		}
 	},
+	handleChangeSlice: function(num){
+		return {
+			type: 'CHANGE_SLICE',
+			payload: num
+		}
+	},
 	handleShowAddToggle: function(){
 		return {
 			type: 'SHOW_ADD_TOGGLE'

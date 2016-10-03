@@ -14,7 +14,8 @@ class Tickets extends React.Component{
 					<div className='alert alert-success fade in'>
 						Ваша заявка принята! Ей назначен номер {this.props.success}. Мы скоро вам ответим
 					</div> : 
-					null}
+					null
+				}
 				{ this.props.showDetails ?
 					<TicketDetails
 						user={this.props.user}
@@ -38,10 +39,14 @@ class Tickets extends React.Component{
 						<TicketList
 							tickets={this.props.tickets}
 							user={this.props.user}
+							currentPage={this.props.currentPage}
+					  		pages={this.props.pages}
+					  		ticketsSlice={this.props.ticketsSlice}
 							fetchTickets={this.props.fetchTickets}
 							fetchTicketDetails={this.props.fetchTicketDetails}
 							handleShowAddToggle={this.props.handleShowAddToggle}
 							handleShowDetailsToggle={this.props.handleShowDetailsToggle}
+							handleChangeSlice={this.props.handleChangeSlice}
 						/>
 					</div>
 				}

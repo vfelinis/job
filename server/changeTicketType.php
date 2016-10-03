@@ -1,4 +1,5 @@
 <?php
+include('dbConfig.php');
 session_start();
 if(isset($_GET['ticket_id'], $_GET['type'])){
 	$ticket_id = $_GET['ticket_id'];
@@ -7,7 +8,7 @@ if(isset($_GET['ticket_id'], $_GET['type'])){
 		exit();
 	}
 	try {
-	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', 'root', '');
+	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', DbConfig::$user, DbConfig::$pass);
 		$stmt = $dbh->prepare("UPDATE Ticket SET type = :type WHERE id = :ticket_id");
 		$stmt->bindValue(':ticket_id', $ticket_id, PDO::PARAM_INT);
 		$stmt->bindValue(':type', $type, PDO::PARAM_STR);

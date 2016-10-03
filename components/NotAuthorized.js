@@ -18,6 +18,7 @@ class NotAuthorized extends React.Component{
 					/> :
 					<Login
 						error={this.props.error}
+						success={this.props.success}
 						fetchLogin={this.props.fetchLogin}
 						handleShowRegToggle={this.props.handleShowRegToggle}
 						handleErrorClear={this.props.handleErrorClear}

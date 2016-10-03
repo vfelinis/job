@@ -1,14 +1,41 @@
 import React from 'react'
+import ReactDom from 'react-dom'
 
 class CreateComment extends React.Component{
+	constructor(){
+		super()
+		this.state = {
+			text: '',
+			textError: false
+		}
+	}
+	handleChangeText(e){
+		this.setState({
+			text: e.target.value
+		})
+	}
 	handleCreateComment(e){
 		e.preventDefault()
-		var form = document.querySelector('form')
-		var formData = new FormData(form)
-		formData.append("ticket_id", this.props.ticket.id)
-		formData.append("ticket_status", this.props.ticket.status)
-		this.props.fetchCreateComment(formData, this.props.ticket.id)
-		form.reset()
+		this.setState({
+			text: ReactDom.findDOMNode(this.refs.text).value
+		})
+		if (this.state.text) {
+			this.setState({
+				text: '',
+				textError: false
+			})
+			var form = document.querySelector('form')
+			var formData = new FormData(form)
+			formData.append("ticket_id", this.props.ticket.id)
+			formData.append("ticket_status", this.props.ticket.status)
+			this.props.fetchCreateComment(formData, this.props.ticket.id)
+			form.reset()
+		}
+		else{
+			this.setState({
+				textError: !this.state.text
+			})
+		}
 	}
 	render(){
 		return (
@@ -21,8 +48,10 @@ class CreateComment extends React.Component{
 						  ref='text'
 						  name='text'
 						  className="form-control"
-						  rows="5">
-						 </textarea>
+						  rows="5"
+						  onChange={this.handleChangeText.bind(this)}
+						></textarea>
+						 <span className={this.state.textError ? 'alert-danger fade in' : 'hidden'}>Поле обязательно для заполнения</span>
 					</div>
 				</div>
 				<div className="form-group">

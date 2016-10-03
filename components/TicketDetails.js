@@ -50,7 +50,7 @@ class TicketDetails extends React.Component{
 								this.props.ticket.files.map((file, key) => {
 									let fileExt = file.split(".")
 									let path = `/files/tickets/${this.props.ticket.id}/${key}.${fileExt[fileExt.length-1]}`
-									return <div key={key}>{file} <a href={path} download>скачать</a></div>
+									return <div key={key}>{file} <a href={path} target="_blank">открыть</a></div>
 								}) :
 								null
 							}

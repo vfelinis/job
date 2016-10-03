@@ -15,6 +15,10 @@ class Login extends React.Component{
 		return (
 			<div>
 				<h1>Авторизация</h1>
+				{ this.props.success ? 
+					<div className='alert alert-success fade in'>{this.props.success}</div> : 
+						null
+				}
 				{this.props.error ? <Error error={this.props.error} /> : null}
 				<form onSubmit={this.handleLogin.bind(this)} className="form-horizontal">
 					<div className="form-group">

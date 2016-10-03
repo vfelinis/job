@@ -1,4 +1,5 @@
 <?php
+include('dbConfig.php');
 include('timeService.php');
 session_start();
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -8,8 +9,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$data = $_POST;
 	try {
 		$date = TimeService::getCurDate();
-	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', 'root', '');
-		$stmt = $dbh->prepare("INSERT INTO Ticket (status, type, theme, full_text, link, date, update_date, user) VALUES (:status, :type, :theme, :full_text, :link, :date, :update_date, :user)");
+	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', DbConfig::$user, DbConfig::$pass);
+		$stmt = $dbh->prepare("INSERT INTO Ticket (status, type, theme, full_text, link, date, update_date, user)
+								 VALUES (:status, :type, :theme, :full_text, :link, :date, :update_date, :user)");
 		$stmt->bindValue(':status', 'Новый', PDO::PARAM_STR);
 		$stmt->bindValue(':type', $data['type'], PDO::PARAM_STR);
 		$stmt->bindValue(':theme', $data['theme'], PDO::PARAM_STR);
@@ -24,8 +26,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$files_name = $_FILES['files']['name'];
 			$files_tmp = $_FILES['files']['tmp_name'];
 			$root = realpath(dirname(__FILE__).'/..');
-			$upload_dir = $root . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'tickets' . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
-			mkdir($upload_dir);
+			$upload_dir = $root.DIRECTORY_SEPARATOR.'files'.DIRECTORY_SEPARATOR.'tickets'.DIRECTORY_SEPARATOR.$id.DIRECTORY_SEPARATOR;
+			mkdir($upload_dir, 0777, true);
 			for ($i = 0; $i < count($files_tmp); $i++) {
 				$name = basename($files_name[$i]);
 				$ext = pathinfo($name, PATHINFO_EXTENSION);

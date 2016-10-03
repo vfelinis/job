@@ -1,5 +1,9 @@
 export default function reducer(state, action){
 	switch(action.type) {
+		case 'CHANGE_SLICE':
+			return {...state,
+				ticketsSlice: action.payload
+			}
 		case 'CHANGE_ZONE':
 			return {...state,
 				user: {...state.user, zone: action.payload}
@@ -38,7 +42,9 @@ export default function reducer(state, action){
 				error: '',
 				success: '',
 				ticket: {},
-				comments: []
+				comments: [],
+				pages: [],
+				ticketsSlice: 4
 			}
 		case 'ERROR':
 			return {...state,
@@ -46,15 +52,25 @@ export default function reducer(state, action){
 			}
 		case 'FETCH_LOGIN':
 			return {...state,
+				success: '',
 				user: action.payload
 			}
 		case 'FETCH_REGISTER':
 			return {...state,
-				showReg: action.payload
+				showReg: action.payload,
+				success: 'Вы зарегистированы! Введите логин и пароль для входа'
 			}
 		case 'FETCH_TICKETS':
+			let countPage = Math.floor(action.payload.length / 4)
+			let page = []
+			let slice = 0
+			for (var i = 0; i <= countPage; i++) {
+				slice += 4
+				page[i] = slice
+			}			
 			return {...state,
-				tickets: action.payload
+				tickets: action.payload,
+				pages: page
 			}
 		case 'SHOW_ADD_TOGGLE':
 			return {...state,
@@ -62,7 +78,8 @@ export default function reducer(state, action){
 			}
 		case 'SHOW_REG_TOGGLE':
 			return {...state,
-				showReg: !state.showReg
+				showReg: !state.showReg,
+				success: ''
 			}
 		case 'SHOW_DETAILS_TOGGLE':
 			return {...state,

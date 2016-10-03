@@ -27,6 +27,9 @@ class Authorized extends React.Component{
 					  showDetails={this.props.showDetails}
 					  ticket={this.props.ticket}
 					  comments={this.props.comments}
+					  currentPage={this.props.currentPage}
+					  pages={this.props.pages}
+					  ticketsSlice={this.props.ticketsSlice}
 					  fetchTickets={this.props.fetchTickets}
 					  fetchTicketDetails={this.props.fetchTicketDetails}fetchComments
 					  fetchComments={this.props.fetchComments}
@@ -37,6 +40,7 @@ class Authorized extends React.Component{
 					  handleShowAddToggle={this.props.handleShowAddToggle}
 					  handleShowDetailsToggle={this.props.handleShowDetailsToggle}
 					  handleClearTicketAndComments={this.props.handleClearTicketAndComments}
+					  handleChangeSlice={this.props.handleChangeSlice}
 					/>
 				}
 			</div>

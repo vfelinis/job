@@ -1,4 +1,5 @@
 <?php
+include('dbConfig.php');
 session_start();
 if(isset($_GET['time_zone'])){
 	$time_zone = $_GET['time_zone'];
@@ -6,7 +7,7 @@ if(isset($_GET['time_zone'])){
 		exit();
 	}
 	try {
-	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', 'root', '');
+	    $dbh = new PDO('mysql:host=localhost;dbname=tickets', DbConfig::$user, DbConfig::$pass);
 		$stmt = $dbh->prepare("UPDATE User SET zone = :zone WHERE id = :user_id");
 		$stmt->bindValue(':zone', $time_zone, PDO::PARAM_INT);
 		$stmt->bindValue(':user_id', $_SESSION['logged_user']['id'], PDO::PARAM_INT);

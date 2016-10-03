@@ -5,6 +5,9 @@ class TicketList extends React.Component{
 	componentDidMount(){
 		this.props.fetchTickets(this.props.user.id)
 	}
+	handleClickPage(num){
+		this.props.handleChangeSlice(num)
+	}
 	render(){
 		return (
 			<div>	
@@ -29,7 +32,7 @@ class TicketList extends React.Component{
 					</thead>
 					<tbody>
 					{
-						this.props.tickets.slice(4-4, 4).map((ticket) => {
+						this.props.tickets.slice(this.props.ticketsSlice-4, this.props.ticketsSlice).map((ticket) => {
 							return 	<TicketItem
 										key={ticket.id}
 										ticket={ticket}
@@ -40,6 +43,18 @@ class TicketList extends React.Component{
 					}
 					</tbody>
 				</table>
+				<div className="pagination_box">
+					<ul className="pagination">
+						{
+							this.props.pages.map((page, i) => {
+								return this.props.ticketsSlice == page ?
+									<li className="active" key={i}><a onClick={this.handleClickPage.bind(this, page)}>{i+1}</a></li> :
+										<li key={i}><a onClick={this.handleClickPage.bind(this, page)}>{i+1}</a></li>
+							})
+						}
+					</ul>
+				</div>
+				
 			</div>
 		)
 	}
