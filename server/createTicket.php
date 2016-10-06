@@ -43,6 +43,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$res = ['showAdd' => false, 'id' => $id];
 		echo json_encode($res);
 	} catch (PDOException $e) {
-		die();
+		exit();
 	}
 }

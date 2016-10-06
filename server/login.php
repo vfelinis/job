@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		  $find_user = $stmt->fetch();
 		}
 	} catch (PDOException $e) {
-	    die();
+	    exit();
 	}
 	if (password_verify($data['pass'], $find_user['password'])) {
 		$user = ['id' => $find_user['id'],

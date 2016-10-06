@@ -1,5 +1,9 @@
 export default function reducer(state, action){
 	switch(action.type) {
+		case 'FETCH_STATISTICS':
+			return {...state,
+				statistics: action.payload
+			}
 		case 'CHANGE_SLICE':
 			return {...state,
 				ticketsSlice: action.payload
@@ -61,10 +65,10 @@ export default function reducer(state, action){
 				success: 'Вы зарегистированы! Введите логин и пароль для входа'
 			}
 		case 'FETCH_TICKETS':
-			let countPage = Math.floor(action.payload.length / 4)
+			let countPage = Math.ceil(action.payload.length / 4)
 			let page = []
 			let slice = 0
-			for (var i = 0; i <= countPage; i++) {
+			for (var i = 0; i < countPage; i++) {
 				slice += 4
 				page[i] = slice
 			}			
@@ -94,6 +98,10 @@ export default function reducer(state, action){
 		case 'ERROR_CLEAR':
 			return {...state,
 				error: ''
+			}
+		case 'SHOW_STATISTICS_TOGGLE':
+			return {...state,
+				showStatistics: !state.showStatistics
 			}
 		default:
 			return state;

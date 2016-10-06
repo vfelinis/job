@@ -25,6 +25,8 @@ class App extends React.Component{
 					  currentPage={this.props.currentPage}
 					  pages={this.props.pages}
 					  ticketsSlice={this.props.ticketsSlice}
+					  showStatistics={this.props.showStatistics}
+					  statistics={this.props.statistics}
 					  fetchTickets={this.props.actions.fetchTicketsAsync}
 					  fetchLogout={this.props.actions.fetchLogoutAsync}
 					  fetchCreateTicket={this.props.actions.fetchCreateTicketAsync}
@@ -34,10 +36,12 @@ class App extends React.Component{
 					  fetchChangeStatus={this.props.actions.fetchChangeStatusAsync}
 					  fetchChangeType={this.props.actions.fetchChangeTypeAsync}
 					  fetchChangeZone={this.props.actions.fetchChangeZoneAsync}
+					  fetchStatistics={this.props.actions.fetchStatisticsAsync}
 					  handleShowAddToggle={this.props.actions.handleShowAddToggle}
 					  handleShowDetailsToggle={this.props.actions.handleShowDetailsToggle}
 					  handleClearTicketAndComments={this.props.actions.handleClearTicketAndComments}
 					  handleChangeSlice={this.props.actions.handleChangeSlice}
+					  handleShowStatisticsToggle={this.props.actions.handleShowStatisticsToggle}
 					/> :
 					<NotAuthorized
 					  user={this.props.user}

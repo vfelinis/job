@@ -1,4 +1,20 @@
 let actions = {
+	fetchStatisticsSync: function(statistics){
+		return {
+			type: 'FETCH_STATISTICS',
+			payload: statistics
+		}
+	},
+	fetchStatisticsAsync: function(){
+		return dispatch => {
+			fetch(`/server/getStatistics.php`, {credentials: 'include'})
+			.then(response => response.json())
+			.then(data => {
+				dispatch(actions.fetchStatisticsSync(data))
+			})
+   			.catch(alert)
+		}
+	},
 	fetchChangeZoneSync: function(timeZone){
 		return {
 			type: 'CHANGE_ZONE',
@@ -213,6 +229,11 @@ let actions = {
 	handleClearTicketAndComments: function(){
 		return {
 			type: 'CLEAR_TICKET_AND_COMMENTS'
+		}
+	},
+	handleShowStatisticsToggle: function(){
+		return {
+			type: 'SHOW_STATISTICS_TOGGLE'
 		}
 	}
 }

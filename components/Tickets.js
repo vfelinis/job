@@ -41,12 +41,16 @@ class Tickets extends React.Component{
 							user={this.props.user}
 							currentPage={this.props.currentPage}
 					  		pages={this.props.pages}
+					  		showStatistics={this.props.showStatistics}
+					  		statistics={this.props.statistics}
 					  		ticketsSlice={this.props.ticketsSlice}
 							fetchTickets={this.props.fetchTickets}
 							fetchTicketDetails={this.props.fetchTicketDetails}
+							fetchStatistics={this.props.fetchStatistics}
 							handleShowAddToggle={this.props.handleShowAddToggle}
 							handleShowDetailsToggle={this.props.handleShowDetailsToggle}
 							handleChangeSlice={this.props.handleChangeSlice}
+							handleShowStatisticsToggle={this.props.handleShowStatisticsToggle}
 						/>
 					</div>
 				}

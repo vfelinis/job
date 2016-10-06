@@ -46,6 +46,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			move_uploaded_file($files_tmp, $upload_dir . "$id.$ext");
 		}
 	} catch (PDOException $e) {
-		die();
+		exit();
 	}
 }

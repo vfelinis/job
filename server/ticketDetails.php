@@ -30,6 +30,6 @@ if(isset($_GET['ticket_id'])){
 		];
 	    echo json_encode($ticket);
 	} catch (PDOException $e) {
-	    die();
+	    exit();
 	}
 }

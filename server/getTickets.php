@@ -26,6 +26,6 @@ if(isset($_GET['user_id'])){
 		}
 	    echo json_encode($arr);
 	} catch (PDOException $e) {
-	    die();
+	    exit();
 	}
 }

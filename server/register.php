@@ -23,6 +23,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			echo '{ "showReg": true, "error": "Неизвестная ошибка" }';
 		}
 	} catch (PDOException $e) {
-	    die();
+	    exit();
 	}
 }

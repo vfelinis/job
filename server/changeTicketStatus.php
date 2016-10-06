@@ -16,6 +16,6 @@ if(isset($_GET['ticket_id'], $_GET['status'])){
 		$res = ['status' => $status];
 		echo json_encode($res);
 	} catch (PDOException $e) {
-	    die();
+	    exit();
 	}
 }

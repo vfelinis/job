@@ -12,13 +12,15 @@ let state = {
 	showReg: false,
 	showAdd: false,
 	showDetails: false,
+	showStatistics: false,
 	user: {},
 	error: '',
 	success: '',
 	ticket: {},
 	comments: [],
 	pages: [],
-	ticketsSlice: 4
+	ticketsSlice: 4,
+	statistics: []
 }
 
 export default function configureStore(initialState = state){

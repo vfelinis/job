@@ -31,6 +31,6 @@ if(isset($_GET['ticket_id'])){
 		}
 	    echo json_encode($arr);
 	} catch (PDOException $e) {
-	    die();
+	    exit();
 	}
 }

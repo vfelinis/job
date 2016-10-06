@@ -16,6 +16,6 @@ if(isset($_GET['time_zone'])){
 		$res = ['zone' => $time_zone];
 		echo json_encode($res);
 	} catch (PDOException $e) {
-	    die();
+	    exit();
 	}
 }
