@@ -62,7 +62,6 @@ class TicketDetails extends React.Component{
 							comments={this.props.comments}
 							fetchComments={this.props.fetchComments}
 							fetchCreateComment={this.props.fetchCreateComment}
-							handleClearTicketAndComments={this.props.handleClearTicketAndComments}
 						/>
 					</div> :
 					null

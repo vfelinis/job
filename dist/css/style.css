@@ -23,10 +23,6 @@ li>a{
 .hidden{
 	display: none;
 }
-.main{
-	position: relative;
-	overflow: hidden;
-}
 .pagination_box{
 	text-align: center;
 }

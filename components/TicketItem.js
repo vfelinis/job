@@ -2,8 +2,8 @@ import React from 'react'
 
 class TicketItem extends React.Component{
 	handleClickDetails(){
-		this.props.fetchTicketDetails(this.props.ticket.id)
 		this.props.handleShowDetailsToggle()
+		this.props.fetchTicketDetails(this.props.ticket.id)
 	}
 	render(){
 		return (

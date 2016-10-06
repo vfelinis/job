@@ -15,7 +15,9 @@ class TicketList extends React.Component{
 				{ this.props.showStatistics ?
 					<div>
 						<Statistics
-							statistics={this.props.statistics}
+							countTickets={this.props.countTickets}
+							avgDaysPublic={this.props.avgDaysPublic}
+							avgDaysFirst={this.props.avgDaysFirst}
 							fetchStatistics={this.props.fetchStatistics}
 							handleShowStatisticsToggle={this.props.handleShowStatisticsToggle}
 						/>

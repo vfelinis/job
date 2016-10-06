@@ -30,7 +30,9 @@ class Authorized extends React.Component{
 					  currentPage={this.props.currentPage}
 					  pages={this.props.pages}
 					  showStatistics={this.props.showStatistics}
-					  statistics={this.props.statistics}
+					  countTickets={this.props.countTickets}
+					  avgDaysPublic={this.props.avgDaysPublic}
+					  avgDaysFirst={this.props.avgDaysFirst}
 					  ticketsSlice={this.props.ticketsSlice}
 					  fetchTickets={this.props.fetchTickets}
 					  fetchTicketDetails={this.props.fetchTicketDetails}fetchComments
@@ -42,7 +44,6 @@ class Authorized extends React.Component{
 					  fetchStatistics={this.props.fetchStatistics}
 					  handleShowAddToggle={this.props.handleShowAddToggle}
 					  handleShowDetailsToggle={this.props.handleShowDetailsToggle}
-					  handleClearTicketAndComments={this.props.handleClearTicketAndComments}
 					  handleChangeSlice={this.props.handleChangeSlice}
 					  handleShowStatisticsToggle={this.props.handleShowStatisticsToggle}
 					/>

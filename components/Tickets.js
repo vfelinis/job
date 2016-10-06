@@ -26,7 +26,6 @@ class Tickets extends React.Component{
 						fetchChangeStatus={this.props.fetchChangeStatus}
 						fetchChangeType={this.props.fetchChangeType}
 						handleShowDetailsToggle={this.props.handleShowDetailsToggle}
-						handleClearTicketAndComments={this.props.handleClearTicketAndComments}
 					/> :
 					<div>
 						<div>
@@ -42,7 +41,9 @@ class Tickets extends React.Component{
 							currentPage={this.props.currentPage}
 					  		pages={this.props.pages}
 					  		showStatistics={this.props.showStatistics}
-					  		statistics={this.props.statistics}
+					  		countTickets={this.props.countTickets}
+							avgDaysPublic={this.props.avgDaysPublic}
+							avgDaysFirst={this.props.avgDaysFirst}
 					  		ticketsSlice={this.props.ticketsSlice}
 							fetchTickets={this.props.fetchTickets}
 							fetchTicketDetails={this.props.fetchTicketDetails}

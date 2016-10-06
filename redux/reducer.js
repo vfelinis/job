@@ -2,7 +2,9 @@ export default function reducer(state, action){
 	switch(action.type) {
 		case 'FETCH_STATISTICS':
 			return {...state,
-				statistics: action.payload
+				countTickets: action.payload.countTickets,
+				avgDaysPublic: action.payload.avgDaysPublic,
+				avgDaysFirst: action.payload.avgDaysFirst
 			}
 		case 'CHANGE_SLICE':
 			return {...state,
@@ -88,12 +90,9 @@ export default function reducer(state, action){
 		case 'SHOW_DETAILS_TOGGLE':
 			return {...state,
 				showDetails: !state.showDetails,
-				success: ''
-			}
-		case 'CLEAR_TICKET_AND_COMMENTS':
-			return {...state,
+				comments: [],
 				ticket: {},
-				comments: []
+				success: ''
 			}
 		case 'ERROR_CLEAR':
 			return {...state,

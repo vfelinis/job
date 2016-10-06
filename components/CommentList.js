@@ -15,7 +15,6 @@ class CommentList extends React.Component{
 	}
 	componentWillUnmount(){
 		clearInterval(this.state.timer)
-		this.props.handleClearTicketAndComments()
 	}
 	render(){
 		return (

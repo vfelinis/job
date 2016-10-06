@@ -2,19 +2,20 @@
 include('dbConfig.php');
 try {
     $dbh = new PDO('mysql:host=localhost;dbname=tickets', DbConfig::$user, DbConfig::$pass);
-	$stmt = $dbh->prepare("SELECT t.id as id,
-							u.role as role,
-							TO_DAYS(c.date) - TO_DAYS(t.date) as quantity_days,
-							TO_DAYS(c.date) as count_days
-							FROM Ticket t
-							join Comment c on t.id = c.ticket
-							join User u on c.user = u.id
+	$stmt = $dbh->prepare("SELECT t.id AS id,
+							u.role AS role,
+							TO_DAYS(c.date) AS count_days,
+							TO_DAYS(c.date) - TO_DAYS(t.date) AS quantity_days
+							FROM Comment c
+							JOIN Ticket t ON c.ticket = t.id
+							JOIN User u ON c.user = u.id
 							ORDER BY t.id, c.id");
 	$arr = [];
 	$stmt->execute();
 	while ($row = $stmt->fetch()) {
 	    array_push($arr, ['id' => $row['id'], 'role' => $row['role'], 'quantity_days' => $row['quantity_days'], 'count_days' => $row['count_days']]);
 	}
+
 	$new_arr = [0];
 	for ($i=0; $i < count($arr); $i++) {
 		if(!array_search($arr[$i]['id'], $new_arr)) {
@@ -24,6 +25,7 @@ try {
 	$public_count = 0;
 	$public_sum = 0;
 	$public_buffer = 0;
+	$public_user_days = 0;
 	$first_count = 0;
 	$first_sum = 0;
 	$first_buffer = 0;
@@ -35,15 +37,18 @@ try {
 						$first_buffer++;
 						$first_count++;
 						$first_sum += $arr[$j]['quantity_days'];
-						
+						$public_buffer = 1;
+						$public_count++;
+						$public_sum += $arr[$j]['quantity_days'];
 					}
 					if ($public_buffer == 0){
 						$public_buffer = 1;
 						$public_count++;
-						$public_sum += $arr[$j]['quantity_days'];
+						$public_sum += $arr[$j]['count_days'] - $public_user_days;
 					}					
 				}
 				else{
+					$public_user_days = $arr[$j]['count_days'];
 					$public_buffer = 0;
 				}
 			}

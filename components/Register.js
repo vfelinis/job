@@ -6,7 +6,7 @@ class Register extends React.Component{
 	constructor(){
 		super()
 		this.state = {
-			login : '',
+			login: '',
 			pass: '',
 			confirmPass: '',
 			loginError: false,
@@ -49,7 +49,10 @@ class Register extends React.Component{
 				this.setState({
 					login : '',
 					pass: '',
-					confirmPass: ''
+					confirmPass: '',
+					loginError: false,
+					passError: false,
+					confirmPassError: false
 				})
 				var form = document.querySelector('form')
 				this.props.handleErrorClear()

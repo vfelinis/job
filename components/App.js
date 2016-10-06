@@ -26,7 +26,9 @@ class App extends React.Component{
 					  pages={this.props.pages}
 					  ticketsSlice={this.props.ticketsSlice}
 					  showStatistics={this.props.showStatistics}
-					  statistics={this.props.statistics}
+					  countTickets={this.props.countTickets}
+					  avgDaysPublic={this.props.avgDaysPublic}
+					  avgDaysFirst={this.props.avgDaysFirst}
 					  fetchTickets={this.props.actions.fetchTicketsAsync}
 					  fetchLogout={this.props.actions.fetchLogoutAsync}
 					  fetchCreateTicket={this.props.actions.fetchCreateTicketAsync}
@@ -39,7 +41,6 @@ class App extends React.Component{
 					  fetchStatistics={this.props.actions.fetchStatisticsAsync}
 					  handleShowAddToggle={this.props.actions.handleShowAddToggle}
 					  handleShowDetailsToggle={this.props.actions.handleShowDetailsToggle}
-					  handleClearTicketAndComments={this.props.actions.handleClearTicketAndComments}
 					  handleChangeSlice={this.props.actions.handleChangeSlice}
 					  handleShowStatisticsToggle={this.props.actions.handleShowStatisticsToggle}
 					/> :

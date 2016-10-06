@@ -10,7 +10,7 @@ let actions = {
 			fetch(`/server/getStatistics.php`, {credentials: 'include'})
 			.then(response => response.json())
 			.then(data => {
-				dispatch(actions.fetchStatisticsSync(data))
+				dispatch(actions.fetchStatisticsSync(data.statistics))
 			})
    			.catch(alert)
 		}
@@ -224,11 +224,6 @@ let actions = {
 	handleShowDetailsToggle: function(){
 		return {
 			type: 'SHOW_DETAILS_TOGGLE'
-		}
-	},
-	handleClearTicketAndComments: function(){
-		return {
-			type: 'CLEAR_TICKET_AND_COMMENTS'
 		}
 	},
 	handleShowStatisticsToggle: function(){

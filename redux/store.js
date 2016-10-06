@@ -20,7 +20,9 @@ let state = {
 	comments: [],
 	pages: [],
 	ticketsSlice: 4,
-	statistics: []
+	countTickets: [],
+	avgDaysPublic: 0,
+	avgDaysFirst: 0
 }
 
 export default function configureStore(initialState = state){

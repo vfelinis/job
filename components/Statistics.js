@@ -18,7 +18,7 @@ class Statistics extends React.Component{
 					</thead>
 					<tbody>
 					{
-						this.props.statistics.map((element, key) => {
+						this.props.countTickets.map((element, key) => {
 							return (
 								<tr className={element.countStatistics > 10 ? 'more10' : ''} key={key}>
 									<td>{key+1}</td>
@@ -30,6 +30,8 @@ class Statistics extends React.Component{
 					}
 					</tbody>
 				</table>
+				<div>Среднее время ответа сотрудника поддержки (по дням): {this.props.avgDaysPublic}</div>
+				<div>Среднее время до первого ответа сотрудника клиенту (по дням): {this.props.avgDaysFirst}</div>
 				<button onClick={this.props.handleShowStatisticsToggle} className="btn btn-primary">Назад</button>
 			</div>
 		)
